@@ -1,0 +1,43 @@
+{
+  "name": "@59alex/video-streams",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Authenticated HLS video sessions with preview buffering and explicit ownership",
+  "license": "MIT",
+  "author": "Aleksandr Kashevarov",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlorian59/video-streams.git",
+    "directory": "browser"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "hls.js": "^1.7.4"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

@@ -1,0 +1,19 @@
+name: Browser video transport
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: browser
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+      - run: npm test
+      - run: node --input-type=module -e "import {createVideoStreams} from './dist/index.js'; if(typeof createVideoStreams!=='function') process.exit(1)"
+      - run: npm pack --dry-run
